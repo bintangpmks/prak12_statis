@@ -1,0 +1,19 @@
+df_bintang=read.delim("clipboard")
+head(df_bintang)
+model_reg=lm(df_bintang$y~df_bintang$x)
+summary(model_reg)
+
+
+#LAtihan 2
+
+df_bintang=read.delim("clipboard")
+df_bintang$brick_dummy<- ifelse(df_bintang$Brick == "Yes", 1,0)
+df_bintang$N_dummy1<- ifelse(df_bintang$Neighborhood == "West", 1,0)
+df_bintang$N_dummy2<- ifelse(df_bintang$Neighborhood == "North", 1,0)
+model_reg=lm(df_bintang$Price~df_bintang$SqFt+df_bintang$Bedrooms+df_bintang$Bathrooms+df_bintang$brick_dummy+df_bintang$N_dummy1+df_bintang$N_dummy2)
+summary(model_reg)
+
+
+by(df_bintang$Price,df_bintang$Neighborhood,mean)
+
+by(df_bintang$Price,df_bintang$Brick,mean)
